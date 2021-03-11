@@ -14,4 +14,4 @@ jobs:
       - uses: actions/setup-node@v2.1.5
         with:
           node-version: 14.x
-      - run: node request.js ${{ github.event.inputs.url }} ${{ secrets.GITHUB_TOKEN }}
+      - run: node scripts/request.js ${{ github.event.inputs.url }} ${{ secrets.GITHUB_TOKEN }}
