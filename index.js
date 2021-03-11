@@ -6,4 +6,4 @@ const fastify = Fastify()
 
 fastify.register(require('./server'))
 
-fastify.listen(process.env.PORT || 3000)
+fastify.listen(process.env.PORT || 3000, '0.0.0.0')
