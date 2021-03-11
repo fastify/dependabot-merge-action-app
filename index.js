@@ -11,3 +11,5 @@ const config = require('./lib/config')
 fastify.register(require('./lib/server'), config)
 
 fastify.listen(config.PORT, '0.0.0.0')
+
+// test
