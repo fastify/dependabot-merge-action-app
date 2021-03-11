@@ -2,7 +2,7 @@
 
 const tap = require('tap')
 
-const server = require('../server')
+const server = require('../lib/server')
 
 function startServer() {
   const fastify = require('fastify')()

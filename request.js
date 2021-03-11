@@ -2,8 +2,6 @@
 
 const [url, token] = process.argv.slice(2)
 
-console.log(url, token)
-
 const h = /^https/.test(url) ? require('https') : require('http')
 
 h.request(
