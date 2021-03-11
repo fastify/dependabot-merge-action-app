@@ -1,5 +1,21 @@
 'use strict'
 
-module.exports = async function (fastify) {
+const { Unauthorized } = require('http-errors')
+
+module.exports = async fastify => {
   fastify.get('/', async () => ({ hello: 'world' }))
+
+  fastify.post('/', async req => {
+    const match = /bearer (.+)$/i.exec(req.headers.authorization)
+
+    if (!match || !match[1]) {
+      throw new Unauthorized()
+    }
+
+    const [, token] = match
+
+    console.log(token)
+
+    return token
+  })
 }
