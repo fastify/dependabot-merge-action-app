@@ -4,7 +4,7 @@ const [url, token, pullRequestNumber] = process.argv.slice(2)
 
 const h = /^https/.test(url) ? require('https') : require('http')
 
-h.request(
+const req = h.request(
   url,
   {
     method: 'POST',
@@ -18,5 +18,5 @@ h.request(
     }
   }
 )
-  .write(JSON.stringify({ pullRequestNumber }))
-  .end()
+req.write(JSON.stringify({ pullRequestNumber }))
+req.end()
