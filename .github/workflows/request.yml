@@ -1,0 +1,17 @@
+name: request
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'url'
+        required: true
+        default: 'https://dependabot-merge-action-app.herokuapp.com/'
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2.1.5
+        with:
+          node-version: 14.x
+      - run: node request.js ${{ github.event.inputs.url }} ${{ secrets.GITHUB_TOKEN }}
