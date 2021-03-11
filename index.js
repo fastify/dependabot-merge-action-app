@@ -2,8 +2,12 @@
 
 const Fastify = require('fastify')
 
-const fastify = Fastify()
+const fastify = Fastify({
+  logger: true,
+})
 
-fastify.register(require('./server'))
+const config = require('./config')
 
-fastify.listen(process.env.PORT || 3000, '0.0.0.0')
+fastify.register(require('./server'), config)
+
+fastify.listen(config.PORT, '0.0.0.0')
