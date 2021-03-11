@@ -1,0 +1,31 @@
+{
+  "name": "dependabot-merge-action-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "test": "tap",
+    "lint": "eslint"
+  },
+  "keywords": [
+    "dependabot",
+    "merge",
+    "action",
+    "app"
+  ],
+  "author": "Simone Busoli <simone.busoli@nearform.com>",
+  "license": "ISC",
+  "dependencies": {
+    "fastify": "^3.14.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.21.0",
+    "prettier": "^2.2.1",
+    "tap": "^14.11.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nearform/dependabot-merge-action-app.git"
+  }
+}
