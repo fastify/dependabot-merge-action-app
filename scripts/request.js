@@ -10,6 +10,7 @@ const req = h.request(
     method: 'POST',
     headers: {
       authorization: `token ${token}`,
+      'content-type': 'application/json',
     },
   },
   res => {
