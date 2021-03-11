@@ -1,6 +1,6 @@
 'use strict'
 
-const [url, token] = process.argv.slice(2)
+const [url, token, pullRequestNumber] = process.argv.slice(2)
 
 const h = /^https/.test(url) ? require('https') : require('http')
 
@@ -9,7 +9,7 @@ h.request(
   {
     method: 'POST',
     headers: {
-      authorization: `bearer ${token}`,
+      authorization: `token ${token}`,
     },
   },
   res => {
@@ -17,4 +17,6 @@ h.request(
       throw new Error(`request failed with status code ${res.statusCode}`)
     }
   }
-).end()
+)
+  .write(JSON.stringify({ pullRequestNumber }))
+  .end()

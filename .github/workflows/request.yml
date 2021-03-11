@@ -6,6 +6,9 @@ on:
         description: 'url'
         required: true
         default: 'https://dependabot-merge-action-app.herokuapp.com/'
+      pullRequestNumber:
+        description: 'pull request number'
+        required: true
 jobs:
   run:
     runs-on: ubuntu-latest
@@ -14,4 +17,4 @@ jobs:
       - uses: actions/setup-node@v2.1.5
         with:
           node-version: 14.x
-      - run: node scripts/request.js ${{ github.event.inputs.url }} ${{ secrets.GITHUB_TOKEN }}
+      - run: node scripts/request.js ${{ github.event.inputs.url }} ${{ secrets.GITHUB_TOKEN }} ${{ github.event.inputs.pullRequestNumber }}
