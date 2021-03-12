@@ -29,11 +29,10 @@
     "eslint": "^7.21.0",
     "nodemon": "^2.0.7",
     "prettier": "^2.2.1",
-    "tap": "^14.11.0",
-    "glob": "7.1.6"
+    "tap": "^14.11.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nearform/dependabot-merge-action-app.git"
+    "url": "https://github.com/fastify/dependabot-merge-action-app.git"
   }
 }
