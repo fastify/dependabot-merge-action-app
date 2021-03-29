@@ -26,7 +26,7 @@
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
-    "eslint": "^7.22.0",
+    "eslint": "^7.23.0",
     "nodemon": "^2.0.7",
     "prettier": "^2.2.1",
     "tap": "^14.11.0"
