@@ -17,5 +17,5 @@ tap.test('hello world', async t => {
 
   const response = await app.inject('/')
 
-  t.deepEqual(response.json(), { hello: 'world' })
+  t.same(response.json(), { hello: 'world' })
 })
