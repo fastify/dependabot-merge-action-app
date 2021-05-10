@@ -29,7 +29,7 @@
   "devDependencies": {
     "eslint": "^7.26.0",
     "nodemon": "^2.0.7",
-    "prettier": "^2.2.1",
+    "prettier": "^2.3.0",
     "tap": "^15.0.9"
   },
   "repository": {
