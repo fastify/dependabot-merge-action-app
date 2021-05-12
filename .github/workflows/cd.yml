@@ -30,7 +30,7 @@ jobs:
       
       - name: Deploy to Cloud Run
         run: |
-          gcloud --quiet beta run deploy $CLOUDRUN_SERVICE_NAME \
+          gcloud --quiet run deploy $CLOUDRUN_SERVICE_NAME \
             --project $PROJECT_ID \
             --region $CLOUDRUN_SERVICE_REGION \
             --platform managed \
