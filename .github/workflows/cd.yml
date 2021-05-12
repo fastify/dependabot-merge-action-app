@@ -36,6 +36,3 @@ jobs:
             --platform managed \
             --set-env-vars APP_ID=$API_ID_VALUE, PRIVATE_KEY=123
             --source=.
-
-gcloud beta run deploy dependabot-test --project=projetocliente --region=us-central1 --platform=managed --set-env-vars=APP_ID=123,PRIVATE_KEY=123 --source=.      
-      
