@@ -1,0 +1,41 @@
+name: dependabot-merge-action-app CD
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy-dependabot-merge-action-app:
+    name: Build & Deploy dependabot-merge-action-app
+    runs-on: ubuntu-latest
+
+    env:
+      PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+      CLOUDRUN_SERVICE_NAME: dependabot-merge-action-app
+      CLOUDRUN_SERVICE_REGION: us-central1
+      API_ID_VALUE: ${{ secrets.API_ID }}
+      PRIVATE_KEY_VALUE: ${{ secrets.PRIVATE_KEY}}
+#     CI: true
+
+
+    steps:
+      - name: Set up gcloud CLI
+        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          version: latest
+          service_account_email: ${{ secrets.GCP_SA_EMAIL }}
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          export_default_credentials: true
+      
+      - name: Deploy to Cloud Run
+        run: |
+          gcloud beta run deploy CLOUDRUN_SERVICE_NAME \
+            --project $PROJECT_ID \
+            --region $CLOUDRUN_SERVICE_REGION \
+            --platform managed \
+            --set-env-vars APP_ID=$API_ID_VALUE, PRIVATE_KEY=123
+            --source=.
+
+gcloud beta run deploy dependabot-test --project=projetocliente --region=us-central1 --platform=managed --set-env-vars=APP_ID=123,PRIVATE_KEY=123 --source=.      
+      
