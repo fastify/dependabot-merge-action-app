@@ -30,10 +30,9 @@ jobs:
       
       - name: Deploy to Cloud Run
         run: |
-          gcloud beta run deploy CLOUDRUN_SERVICE_NAME \
+          gcloud --quiet beta run deploy CLOUDRUN_SERVICE_NAME \
             --project $PROJECT_ID \
             --region $CLOUDRUN_SERVICE_REGION \
             --platform managed \
             --set-env-vars APP_ID=$API_ID_VALUE, PRIVATE_KEY=123
             --source=.
-            --quiet
