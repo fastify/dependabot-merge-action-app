@@ -11,11 +11,11 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+      PROJECT_ID: projetocliente
       CLOUDRUN_SERVICE_NAME: dependabot-merge-action-app
       CLOUDRUN_SERVICE_REGION: us-central1
-      API_ID_VALUE: ${{ secrets.API_ID }}
-      PRIVATE_KEY_VALUE: ${{ secrets.PRIVATE_KEY}}
+      API_ID_VALUE: 123
+      PRIVATE_KEY_VALUE: 123
 #     CI: true
 
 
