@@ -20,6 +20,12 @@ jobs:
 
 
     steps:
+    
+      - name: Checkout project
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+          
       - name: Set up gcloud CLI
         uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
         with:
