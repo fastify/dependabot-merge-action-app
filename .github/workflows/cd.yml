@@ -28,6 +28,9 @@ jobs:
           service_account_key: ${{ secrets.GCP_SA_KEY }}
           export_default_credentials: true
       
+      - name: list folder
+        run: ls -la
+        
       - name: Deploy to Cloud Run
         run: |
           gcloud --quiet beta run deploy $CLOUDRUN_SERVICE_NAME --allow-unauthenticated --project=$PROJECT_ID --region=$CLOUDRUN_SERVICE_REGION --platform=managed --set-env-vars=APP_ID=$API_ID_VALUE,PRIVATE_KEY=$PRIVATE_KEY_VALUE --source=.
