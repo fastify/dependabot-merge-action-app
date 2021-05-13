@@ -30,10 +30,4 @@ jobs:
       
       - name: Deploy to Cloud Run
         run: |
-          gcloud --quiet beta run deploy $CLOUDRUN_SERVICE_NAME \
-            --allow-unauthenticated
-            --project $GCP_PROJECT_ID \
-            --region $CLOUDRUN_SERVICE_REGION \
-            --platform managed \
-            --set-env-vars APP_ID=$API_ID_VALUE,PRIVATE_KEY=$PRIVATE_KEY_VALUE \
-            --source .
+          gcloud --quiet beta run deploy $CLOUDRUN_SERVICE_NAME --allow-unauthenticate --project $GCP_PROJECT_ID --region $CLOUDRUN_SERVICE_REGION --platform managed --set-env-vars APP_ID=$API_ID_VALUE,PRIVATE_KEY=$PRIVATE_KEY_VALUE --source .
