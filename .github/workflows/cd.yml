@@ -1,4 +1,4 @@
-name: dependabot-merge-action-app CD
+name: Dependabot CD to GCP
 
 on:
   push:
