@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+      PROJECT_ID: projetocliente
       CLOUDRUN_SERVICE_NAME: dependabot-merge-action-app
       CLOUDRUN_SERVICE_REGION: us-central1
       API_ID_VALUE: ${{ secrets.API_ID }}
@@ -22,7 +22,6 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 1
-
       - name: Set up gcloud CLI
         uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
         with:
