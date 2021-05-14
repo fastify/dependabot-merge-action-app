@@ -1,0 +1,40 @@
+name: Dependabot CD to GCP
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  deploy-dependabot-merge-action-app:
+    name: Build & Deploy dependabot-merge-action-app
+    runs-on: ubuntu-latest
+
+    env:
+      GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+      GCP_CLOUDRUN_SERVICE_NAME: ${{ secrets.GCP_CLOUDRUN_SERVICE_NAME }}
+      GCP_CLOUDRUN_SERVICE_REGION: ${{ secrets.GCP_CLOUDRUN_SERVICE_REGION }}
+      API_ID: ${{ secrets.API_ID }}
+      PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v2
+
+      - name: Set up gcloud CLI
+        uses: GoogleCloudPlatform/github-actions/setup-gcloud@v0.2.1
+        with:
+          service_account_email: ${{ secrets.GCP_SA_EMAIL }}
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          export_default_credentials: true
+               
+      - name: Deploy to Cloud Run
+        run: |
+          gcloud --quiet beta run deploy $GCP_CLOUDRUN_SERVICE_NAME \
+            --allow-unauthenticated \
+            --project $GCP_PROJECT_ID \
+            --region $GCP_CLOUDRUN_SERVICE_REGION \
+            --platform managed \
+            --set-env-vars APP_ID=$API_ID,PRIVATE_KEY=$PRIVATE_KEY \
+            --source .
