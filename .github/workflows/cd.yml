@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch:
 
 jobs:
   deploy-dependabot-merge-action-app:
@@ -11,11 +12,11 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
-      CLOUDRUN_SERVICE_NAME: ${{ secrets.GCP_CLOUDRUN_SERVICE_NAME }}
-      CLOUDRUN_SERVICE_REGION: ${{ secrets.GCP_CLOUDRUN_SERVICE_REGION }}
-      API_ID_VALUE: ${{ secrets.API_ID }}
-      PRIVATE_KEY_VALUE: ${{ secrets.PRIVATE_KEY}}
+      GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+      GCP_CLOUDRUN_SERVICE_NAME: ${{ secrets.GCP_CLOUDRUN_SERVICE_NAME }}
+      GCP_CLOUDRUN_SERVICE_REGION: ${{ secrets.GCP_CLOUDRUN_SERVICE_REGION }}
+      API_ID: ${{ secrets.API_ID }}
+      PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
 
     steps:
       - name: Checkout project
@@ -30,10 +31,10 @@ jobs:
                
       - name: Deploy to Cloud Run
         run: |
-          gcloud --quiet beta run deploy $CLOUDRUN_SERVICE_NAME \
+          gcloud --quiet beta run deploy $GCP_CLOUDRUN_SERVICE_NAME \
             --allow-unauthenticated \
-            --project $PROJECT_ID \
-            --region $CLOUDRUN_SERVICE_REGION \
+            --project $GCP_PROJECT_ID \
+            --region $GCP_CLOUDRUN_SERVICE_REGION \
             --platform managed \
-            --set-env-vars APP_ID=$API_ID_VALUE,PRIVATE_KEY=$PRIVATE_KEY_VALUE \
+            --set-env-vars APP_ID=$API_ID,PRIVATE_KEY=$PRIVATE_KEY \
             --source .
