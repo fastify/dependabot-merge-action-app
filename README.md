@@ -58,5 +58,5 @@ Then this mechanism can do little to no harm, in the worst case merging a Depend
 - Create a service account in the IAM & Admin console to be used to deploy the app 
 - Create a key for the service account, this key will be configured as a secret in the GitHub actions to be able to deploy the app
 - For the service account, [grant the permissions "Service Account User", "Cloud Run Admin", "Storage Admin"](https://github.com/google-github-actions/deploy-cloudrun) and "Cloud Build Service Account", this last permission is necessary since cloud build will be used to build the image based in the source code directly
-- Configure the secrets for: GCP project id, cloud run service name, cloud run region, service account e-mail, service account key, app id and private key for the app
+- Configure the secrets for: `GCP_PROJECT_ID`, `GCP_CLOUDRUN_SERVICE_NAME`, `GCP_CLOUDRUN_SERVICE_REGION`, `GCP_SA_EMAIL`, `GCP_SA_KEY`, `API_ID` and `PRIVATE_KEY`
 - After these steps above are configured, run the workflow
