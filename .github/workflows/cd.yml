@@ -12,11 +12,11 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
-      CLOUDRUN_SERVICE_NAME: ${{ secrets.GCP_CLOUDRUN_SERVICE_NAME }}
-      CLOUDRUN_SERVICE_REGION: ${{ secrets.GCP_CLOUDRUN_SERVICE_REGION }}
-      API_ID_VALUE: ${{ secrets.API_ID }}
-      PRIVATE_KEY_VALUE: ${{ secrets.PRIVATE_KEY}}
+      GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+      GCP_CLOUDRUN_SERVICE_NAME: ${{ secrets.GCP_CLOUDRUN_SERVICE_NAME }}
+      GCP_CLOUDRUN_SERVICE_REGION: ${{ secrets.GCP_CLOUDRUN_SERVICE_REGION }}
+      API_ID: ${{ secrets.API_ID }}
+      PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
 
     steps:
       - name: Checkout project
