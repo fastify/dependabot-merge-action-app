@@ -62,12 +62,12 @@ Then this mechanism can do little to no harm, in the worst case merging a Depend
 - Create a key for the service account, this key will be configured as a secret in the GitHub actions to be able to deploy the app
 - For the service account, [grant the permissions "Service Account User", "Cloud Run Admin", "Storage Admin"](https://github.com/google-github-actions/deploy-cloudrun) and "Cloud Build Service Account", this last permission is necessary since cloud build will be used to build the image based in the source code directly
 - Clone this repo to your GitHub account
-- In the `Settings` of your GitHub repo, go to `Secrets` and create the `New repository secret` with the name and values bellow:
+- In the `Settings` of your GitHub repo, go to `Secrets` and create the `New repository secret` with the names and values bellow:
     - `GCP_PROJECT_ID`: The [project ID](https://support.google.com/googleapi/answer/7014113?hl=en) of your GCP Account
-    - `GCP_CLOUDRUN_SERVICE_NAME`: The name of the cloud run service, you can use the select any name that you prefer
+    - `GCP_CLOUDRUN_SERVICE_NAME`: The name of the cloud run service, you can select any name that you prefer
     - `GCP_CLOUDRUN_SERVICE_REGION`: The [region](https://cloud.google.com/compute/docs/regions-zones) in the GCP that you want to create the cloud run service
     - `GCP_SA_KEY`: The key that you created for your service account with the permissions to deploy the app
-    - `API_ID`: 
-    - `PRIVATE_KEY`: 
-- After the steps above are configured, go to `Actions` in your GitHub repo and run the CD workflow that is created in the folder `git/workflows/cd.yaml`. The file is already configured with the action to deploy the cloud run service using the secrets that were created.
+    - `API_ID`: The ID of the api to run the dependabot-merge-action-app
+    - `PRIVATE_KEY`: The private key to run the dependabot-merge-action-app
+- After the steps above are configured, go to `Actions` in your GitHub repo and run the CD workflow that is created in the folder `.git/workflows/cd.yaml`. The file is already configured with the action to deploy the cloud run service using the secrets that were created.
 - Once the workflow run, go to you GCP Account and open the "Cloud Run" page to see the details of the deployed service.
