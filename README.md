@@ -67,7 +67,7 @@ Then this mechanism can do little to no harm, in the worst case merging a Depend
     - `GCP_CLOUDRUN_SERVICE_NAME`: The name of the cloud run service, you can select any name that you prefer
     - `GCP_CLOUDRUN_SERVICE_REGION`: The [region](https://cloud.google.com/compute/docs/regions-zones) in the GCP that you want to create the cloud run service
     - `GCP_SA_KEY`: The key that you created for your service account with the permissions to deploy the app. This is a JSON object and should be used as-is.
-    - `API_ID`: The ID of the api to run the dependabot-merge-action-app
+    - `APP_ID`: The ID of the GitHub App. You can get this from the GitHub app settings. The default app is [here](https://github.com/apps/dependabot-merge-action)
     - `PRIVATE_KEY`: The private key to run the dependabot-merge-action-app
 - After the steps above are configured, go to `Actions` in your GitHub repo and run the CD workflow that is created in the folder `.git/workflows/cd.yaml`. The file is already configured with the action to deploy the cloud run service using the secrets that were created.
 - Once the workflow run, go to you GCP Account and open the "Cloud Run" page to see the details of the deployed service.
