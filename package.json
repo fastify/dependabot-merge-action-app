@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "eslint": "^7.30.0",
-    "nodemon": "^2.0.9",
+    "nodemon": "^2.0.10",
     "prettier": "^2.3.2",
     "tap": "^15.0.9"
   },
