@@ -30,7 +30,7 @@
     "eslint": "^7.32.0",
     "nodemon": "^2.0.12",
     "prettier": "^2.4.1",
-    "tap": "^15.0.9"
+    "tap": "^15.0.10"
   },
   "repository": {
     "type": "git",
