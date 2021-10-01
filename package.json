@@ -19,7 +19,7 @@
   "license": "ISC",
   "dependencies": {
     "env-schema": "^3.4.0",
-    "fastify": "^3.21.6",
+    "fastify": "^3.22.0",
     "fluent-json-schema": "^3.0.1",
     "http-errors": "^1.8.0",
     "jsonwebtoken": "^8.5.1",
