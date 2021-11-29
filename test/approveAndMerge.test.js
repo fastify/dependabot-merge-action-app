@@ -27,24 +27,24 @@ const approveAndMerge = proxyquire('../lib/approveAndMerge', {
 
 tap.test('approveAndMerge function', t => {
   t.beforeEach(() => {
-    mockRequest = { log: { info: () => {} } }
-    mockCreateAppJWT = () => {}
+    mockRequest = { log: { info: () => { } } }
+    mockCreateAppJWT = () => { }
     mockGetInstallationRepositories = async () => [
       { name: 'the-repo', owner: { login: 'the-owner' } },
     ]
     mockCreateInstallationAccessToken = async () => ({
       token: 'the-access-token',
     })
-    mockGetRepositoryInstallation = async () => {}
+    mockGetRepositoryInstallation = async () => { }
     mockGetPullRequest = async () => ({
       user: { login: 'dependabot[bot]' },
       head: { ref: 'dependabot/npm_and_yarn/pkg-0.0.1' },
     })
-    mockApprovePullRequest = async () => {}
-    mockMergePullRequest = async () => {}
+    mockApprovePullRequest = async () => { }
+    mockMergePullRequest = async () => { }
   })
 
-  t.plan(5)
+  t.plan(7)
 
   t.test('should pass', async t => {
     const githubToken = 'the-github-token'
@@ -117,7 +117,12 @@ tap.test('approveAndMerge function', t => {
     const githubToken = 'the-github-token'
     const appJWT = 'jwt-token'
     const pullRequestNumber = 123
-    const options = { excludePackages: ['pkg'] }
+    const options = { excludePackages: ['pkg-with-dashes'] }
+
+    mockGetPullRequest = async () => ({
+      user: { login: 'dependabot[bot]' },
+      head: { ref: 'dependabot/github_actions/fastify/pkg-with-dashes-2.6.0' },
+    })
 
     t.equal(
       await approveAndMerge(
@@ -127,7 +132,7 @@ tap.test('approveAndMerge function', t => {
         pullRequestNumber,
         options
       ),
-      'pkg is excluded, skipping'
+      'pkg-with-dashes is excluded, skipping'
     )
   })
 
@@ -146,6 +151,60 @@ tap.test('approveAndMerge function', t => {
         options
       ),
       'Approving only'
+    )
+  })
+
+  t.test('should throws an error on major releases for github-action-merge-dependabot', async t => {
+    const githubToken = 'the-github-token'
+    const appJWT = 'jwt-token'
+    const pullRequestNumber = 123
+    const options = { excludePackages: [] }
+
+    mockGetPullRequest = async () => ({
+      user: { login: 'dependabot[bot]' },
+      "title": "chore(deps): bump fastify/github-action-merge-dependabot from 2.5.0 to 3.6.0",
+      head: { ref: 'dependabot/github_actions/fastify/github-action-merge-dependabot-3.6.0' },
+    })
+
+    try {
+      await approveAndMerge(
+        mockRequest,
+        githubToken,
+        appJWT,
+        pullRequestNumber,
+        options
+      )
+    } catch (error) {
+      t.match(error.message, /Cannot automerge github-action-merge-dependabot 3.6.0 major release/)
+    }
+  })
+
+  t.test('should not skip minor releases for github-action-merge-dependabot', async t => {
+    const githubToken = 'the-github-token'
+    const appJWT = 'jwt-token'
+    const pullRequestNumber = 123
+    const options = { excludePackages: [] }
+
+    mockGetPullRequest = async () => ({
+      user: { login: 'dependabot[bot]' },
+      "title": "chore(deps): bump fastify/github-action-merge-dependabot from 2.5.0 to 2.6.0",
+      head: { ref: 'dependabot/github_actions/fastify/github-action-merge-dependabot-2.6.0' },
+    })
+
+    mockMergePullRequest = async () => {
+      t.pass('called merge')
+      return 'done'
+    }
+
+    t.equal(
+      await approveAndMerge(
+        mockRequest,
+        githubToken,
+        appJWT,
+        pullRequestNumber,
+        options
+      ),
+      'done'
     )
   })
 })
