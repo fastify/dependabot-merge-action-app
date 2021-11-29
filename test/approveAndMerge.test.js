@@ -117,7 +117,12 @@ tap.test('approveAndMerge function', t => {
     const githubToken = 'the-github-token'
     const appJWT = 'jwt-token'
     const pullRequestNumber = 123
-    const options = { excludePackages: ['pkg'] }
+    const options = { excludePackages: ['pkg-with-dashes'] }
+
+    mockGetPullRequest = async () => ({
+      user: { login: 'dependabot[bot]' },
+      head: { ref: 'dependabot/github_actions/fastify/pkg-with-dashes-2.6.0' },
+    })
 
     t.equal(
       await approveAndMerge(
@@ -127,7 +132,7 @@ tap.test('approveAndMerge function', t => {
         pullRequestNumber,
         options
       ),
-      'pkg is excluded, skipping'
+      'pkg-with-dashes is excluded, skipping'
     )
   })
 
