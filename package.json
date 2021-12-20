@@ -21,7 +21,7 @@
     "env-schema": "^3.5.0",
     "fastify": "^3.25.0",
     "fluent-json-schema": "^3.0.1",
-    "http-errors": "^1.8.1",
+    "http-errors": "^2.0.0",
     "jsonwebtoken": "^8.5.1",
     "node-fetch": "^2.6.6",
     "proxyquire": "^2.1.3"
