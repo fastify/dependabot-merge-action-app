@@ -20,7 +20,7 @@
   "dependencies": {
     "env-schema": "^3.5.2",
     "fastify": "^3.27.2",
-    "fluent-json-schema": "^3.0.1",
+    "fluent-json-schema": "^3.1.0",
     "http-errors": "^2.0.0",
     "jsonwebtoken": "^8.5.1",
     "node-fetch": "^2.6.7",
