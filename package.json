@@ -18,7 +18,7 @@
   "author": "Simone Busoli <simone.busoli@nearform.com>",
   "license": "ISC",
   "dependencies": {
-    "env-schema": "^3.5.2",
+    "env-schema": "^4.0.0",
     "fastify": "^3.27.4",
     "fluent-json-schema": "^3.1.0",
     "http-errors": "^2.0.0",
